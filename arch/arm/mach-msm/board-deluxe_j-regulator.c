@@ -474,29 +474,29 @@ deluxe_j_gpio_regulator_pdata[] __devinitdata = {
 };
 
 struct regulator_init_data deluxe_j_saw_regulator_pdata_8921_s5 =
-#ifndef CONFIG_CPU_OVERCLOCK
-	SAW_VREG_INIT(S5, "8921_s5",	       800000, 1300000);
+#ifdef CONFIG_CPU_OVERCLOCK
+	SAW_VREG_INIT(S5, "8921_s5",	       500000, 1350000);
 #else	
 	SAW_VREG_INIT(S5, "8921_s5",	       800000, 1350000);
 #endif
 struct regulator_init_data deluxe_j_saw_regulator_pdata_8921_s6 =
-#ifndef CONFIG_CPU_OVERCLOCK
-	SAW_VREG_INIT(S6, "8921_s6",	       800000, 1300000);
+#ifdef CONFIG_CPU_OVERCLOCK
+	SAW_VREG_INIT(S6, "8921_s6",	       500000, 1350000);
 #else	
 	SAW_VREG_INIT(S6, "8921_s6",	       800000, 1350000);
 #endif
 
 struct regulator_init_data deluxe_j_saw_regulator_pdata_8821_s0 =
 
-#ifndef CONFIG_CPU_OVERCLOCK
-	SAW_VREG_INIT(8821_S0, "8821_s0",       800000, 1300000);
+#ifdef CONFIG_CPU_OVERCLOCK
+	SAW_VREG_INIT(8821_S0, "8821_s0",       500000, 1350000);
 #else
 	SAW_VREG_INIT(8821_S0, "8821_s0",       800000, 1350000);
 #endif
 
 struct regulator_init_data deluxe_j_saw_regulator_pdata_8821_s1 =
-#ifndef CONFIG_CPU_OVERCLOCK
-	SAW_VREG_INIT(8821_S1, "8821_s1",       800000, 1300000);
+#ifdef CONFIG_CPU_OVERCLOCK
+	SAW_VREG_INIT(8821_S1, "8821_s1",       500000, 1350000);
 #else
 	SAW_VREG_INIT(8821_S1, "8821_s1",       800000, 1350000);
 #endif
