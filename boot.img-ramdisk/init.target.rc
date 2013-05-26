@@ -114,8 +114,8 @@ on emmc-fs
    mount tmpfs tmpfs /system/lib/modules    
    symlink /lib/modules/eeprom_93cx6.ko /system/lib/modules/eeprom_93cx6.ko 
    symlink /lib/modules/test-iosched.ko /system/lib/modules/test-iosched.ko
-   symlink /lib/modules/scsi_wait_scan.ko /system/lib/modules/scsi_wait_scan.ko
    symlink /lib/modules/spidev.ko /system/lib/modules/spidev.ko
+   symlink /lib/modules/scsi_wait_scan.ko /system/lib/modules/scsi_wait_scan.ko
    symlink /lib/modules/msm-buspm-dev.ko /system/lib/modules/msm-buspm-dev.ko
    symlink /lib/modules/bcmdhd.ko /system/lib/modules/bcmdhd.ko
    symlink /lib/modules/qce40.ko /system/lib/modules/qce40.ko

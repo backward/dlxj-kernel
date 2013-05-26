@@ -5,6 +5,7 @@
 
 ## delete *.ko files
 rm ./boot.img-ramdisk/lib/modules/*
+rm -r ./tmp/boot.img-ramdisk ./tmp
 
 # copy *.ko file to <ramdisk>/lib/modules
 find -name '*.ko' ! -path "*boot.img-ramdisk*" -exec cp -av {} ./boot.img-ramdisk/lib/modules \;
@@ -23,5 +24,4 @@ chmod 750 ./tmp/boot.img-ramdisk/init.*
 ./build-tools/repack-bootimg.pl arch/arm/boot/zImage ./tmp/boot.img-ramdisk ./output/boot`date +%m%d`-`cat .version`.img
 
 # delete tmp dir
-rm -r ./tmp/boot.img-ramdisk ./tmp
 echo "output to ./output/boot`date +%m%d`-`cat .version`.img"
