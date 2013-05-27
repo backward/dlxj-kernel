@@ -638,15 +638,18 @@ static int cpufreq_governor_dbs(struct cpufreq_policy *policy,
 
 			max_periods = max(DEFAULT_HOTPLUG_IN_SAMPLING_PERIODS,
 					DEFAULT_HOTPLUG_OUT_SAMPLING_PERIODS);
-			dbs_tuners_ins.hotplug_load_history = kmalloc(
-					(sizeof(unsigned int) * max_periods),
-					GFP_KERNEL);
-			if (!dbs_tuners_ins.hotplug_load_history) {
-				WARN_ON(1);
-				return -ENOMEM;
+			if ( dbs_enable == 1 ) {
+				dbs_tuners_ins.hotplug_load_history = kmalloc(
+						(sizeof(unsigned int) * max_periods),
+						GFP_KERNEL);
+				if (!dbs_tuners_ins.hotplug_load_history) {
+					mutex_unlock(&dbs_mutex);
+					WARN_ON(1);
+					return -ENOMEM;
+				}
+				for (i = 0; i < max_periods; i++)
+					dbs_tuners_ins.hotplug_load_history[i] = 50;
 			}
-			for (i = 0; i < max_periods; i++)
-				dbs_tuners_ins.hotplug_load_history[i] = 50;
 		}
 		this_dbs_info->cpu = cpu;
 		this_dbs_info->freq_table = cpufreq_frequency_get_table(cpu);
@@ -675,10 +678,11 @@ static int cpufreq_governor_dbs(struct cpufreq_policy *policy,
 		mutex_destroy(&this_dbs_info->timer_mutex);
 		dbs_enable--;
 		mutex_unlock(&dbs_mutex);
-		if (!dbs_enable)
+		if (!dbs_enable) {
 			sysfs_remove_group(cpufreq_global_kobject,
 					   &dbs_attr_group);
-		kfree(dbs_tuners_ins.hotplug_load_history);
+			kfree(dbs_tuners_ins.hotplug_load_history);
+		}
 		/*
 		 * XXX BIG CAVEAT: Stopping the governor with CPU1 offline
 		 * will result in it remaining offline until the user onlines
