@@ -648,6 +648,9 @@ KBUILD_CFLAGS	+= $(call cc-option,-fno-strict-overflow)
 # conserve stack if available
 KBUILD_CFLAGS   += $(call cc-option,-fconserve-stack)
 
+# disable sizeof-pointer-memacess for net/bluetooth/hci_conn.c, drivers/video/msm/mipi_novatek.c, drivers/video/msm/mipi_tc358764_dsi2lvds.c
+KBUILD_CFLAGS += $(call cc-disable-warning,sizeof-pointer-memaccess,)
+
 # use the deterministic mode of AR if available
 KBUILD_ARFLAGS := $(call ar-option,D)
 
