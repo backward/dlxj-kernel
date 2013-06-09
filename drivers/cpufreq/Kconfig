@@ -170,6 +170,11 @@ config CPU_FREQ_DEFAULT_GOV_SMARTASSV2
 	select CPU_FREQ_GOV_SMARTASSV2
 	help
 		Use the CPUFreq governor 'smartassV2' as default.
+
+config CPU_FREQ_DEFAULT_GOV_DANCEDANCE
+	bool "dancedance"
+	select CPU_FREQ_GOV_DANCEDANCE
+
 endchoice
 
 config CPU_FREQ_GOV_PERFORMANCE
@@ -470,6 +475,10 @@ config SMARTASSV2_SAMPLE_RATE_JIFFIES
 	depends on CPU_FREQ_GOV_SMARTASSV2
 	help
 	  Sampling rate, I highly recommend to leave it at 2.
+
+config CPU_FREQ_GOV_DANCEDANCE
+	tristate "'dancedance' cpufreq governor"
+	depends on CPU_FREQ
 
 menu "x86 CPU frequency scaling drivers"
 depends on X86
