@@ -95,6 +95,7 @@ void kgsl_pwrctrl_pwrlevel_change(struct kgsl_device *device,
 				unsigned int new_level)
 {
 	struct kgsl_pwrctrl *pwr = &device->pwrctrl;
+//	if (new_level < (pwr->num_pwrlevels - 1) &&
 	if (new_level < pwr->num_pwrlevels &&
 		new_level >= pwr->thermal_pwrlevel &&
 		new_level != pwr->active_pwrlevel) {
